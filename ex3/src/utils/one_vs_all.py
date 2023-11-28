@@ -42,11 +42,11 @@ def one_vs_all(X, y, num_labels, lam):
               trained_theta_i = optimize.fmin_cg(f=cost, fprime=grad, x0=theta_i, args=args, maxiter=50)
           ```
     """
-    all_theta = np.zeros((num_labels, n + 1))  # 10 x 401 nem ennyi
+    all_theta = np.zeros((num_labels, n + 1))
     X = np.column_stack((np.ones((m, 1)), X))
 
     for i in range(0, num_labels):
-        args = (X, y % 7 == i, lam)
+        args = (X, y == i, lam)
         initial_theta = np.zeros((n + 1, 1))
         all_theta[i, :] = optimize.fmin_cg(f=cost, fprime=grad, x0=initial_theta, args=args, maxiter=200)
 

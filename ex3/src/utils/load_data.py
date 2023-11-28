@@ -2,6 +2,7 @@ import pandas as pd
 from os import getcwd, path
 from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import StandardScaler
+from sklearn.utils import shuffle
 
 
 def load_data():
@@ -23,20 +24,23 @@ def load_data():
     X = df.drop(columns=['Class'])  # Drop the 'Class' column to get the features
     y = df['Class']  # Extract the 'Class' column as the target variable
 
+
+    # Shuffle the data while keeping X and y aligned
+    X, y = shuffle(X, y, random_state=42)
+
     # Create a dictionary similar to the one loaded with scipy.io.loadmat
     data_dict = {'X': X.values, 'y': y.values}
 
-    print(data_dict['X'])  # Features
-    print(data_dict['y'])  # Target variable
-    print("Size of X:", len(data_dict['X']))
-    print("Size of y:", len(data_dict['y']))
+    # print(data_dict['X'])  # Features
+    # print(data_dict['y'])  # Target variable
+    # print("Size of X:", len(data_dict['X']))
+    # print("Size of y:", len(data_dict['y']))
 
     label_encoder = LabelEncoder()
     data_dict['y'] = label_encoder.fit_transform(data_dict['y'])
 
-    print('kiskacsaa')  # Features
-    print(data_dict['y'])  # Target variable
-    print("Size of y:", len(data_dict['y']))
+    # print(data_dict['y'])  # Target variable
+    # print("Size of y:", len(data_dict['y']))
 
     # scaler = StandardScaler()
     # data_dict['X'] = scaler.fit_transform(data_dict['X'])
