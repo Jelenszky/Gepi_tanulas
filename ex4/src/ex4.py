@@ -140,11 +140,12 @@ def ex4():
             print('Validation Set Accuracy: %f\n' % valid_accuracy,
                   'reached with hidden layer sizes: ', first_hidden_layer_size, ' and ', second_hidden_layer_size)
 
-    # plot.plot(hidden_layer_sizes, training_accuracies)
-    # plot.plot(hidden_layer_sizes, validation_accuracies)
-    # plot.xlabel('hidden layer size')
-    # plot.ylabel('Accuracy')
-    # plot.show()
+    hidden_layer_sizes_to_plot = [f"{x}x{y}" for x in first_hidden_layer_sizes for y in second_hidden_layer_sizes]
+    plot.plot(hidden_layer_sizes_to_plot, training_accuracies)
+    plot.plot(hidden_layer_sizes_to_plot, validation_accuracies)
+    plot.xlabel('hidden layer size')
+    plot.ylabel('Accuracy')
+    plot.show()
 
         # input("Program paused. Press Enter to exit...")
     best_hidden_layer_sizes = [
